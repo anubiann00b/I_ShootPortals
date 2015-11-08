@@ -28,11 +28,11 @@ public class MyPlayerMovementSystem extends IteratingSystem {
         VelocityComponent vel = VelocityComponent.MAPPER.get(entity);
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            pos.x += 1;
+            vel.dx = 1;
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            pos.x -= 1;
+            vel.dx = -1;
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {

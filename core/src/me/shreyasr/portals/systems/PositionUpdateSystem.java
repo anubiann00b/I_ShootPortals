@@ -54,9 +54,22 @@ public class PositionUpdateSystem extends IteratingSystem {
 
         for (Rectangle rect : tiles) {
             if (Intersector.intersectRectangles(hitbox.rect, rect, intersection)) {
-                if (intersection.y + intersection.height > rect.y) {
+                if (rect.y > hitbox.rect.y && hitbox.rect.y+hitbox.rect.height < rect.y+rect.height) {
+                    pos.y -= intersection.height;
+                    vel.dy = 0;
+                }
+                if (rect.y < hitbox.rect.y) {
                     pos.y += intersection.height;
                     vel.dy = 0;
+                }
+
+                if (rect.x > hitbox.rect.x && hitbox.rect.x+hitbox.rect.width < rect.x+rect.width) {
+                    pos.x -= intersection.width;
+                    vel.dx = 0;
+                }
+                if (rect.x < hitbox.rect.x) {
+                    pos.x += intersection.width;
+                    vel.dx = 0;
                 }
             }
         }
