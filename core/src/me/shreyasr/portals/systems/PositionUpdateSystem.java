@@ -36,45 +36,34 @@ public class PositionUpdateSystem extends IteratingSystem {
 
         double speedMult = (deltaTime * 60 / 1000) * 1;
 
-        List<Rectangle> tiles = new ArrayList<Rectangle>();
+        List<Polygon> tiles = new ArrayList<Polygon>();
 
         TiledMapTileLayer tileLayer = ((TiledMapTileLayer)map.getLayers().get(0));
         for (int i = 0; i < tileLayer.getWidth(); i++) {
             for (int j = 0; j < tileLayer.getHeight(); j++) {
                 if (tileLayer.getCell(i,j) != null) {
-                    Rectangle rect = new Rectangle(
+                    Polygon rect = new Polygon(new float[]{
                             tileLayer.getTileWidth()*4*i, tileLayer.getTileHeight()*4*j,
-                            tileLayer.getTileWidth()*4, tileLayer.getTileHeight()*4);
+                            tileLayer.getTileWidth()*4*(i+1), tileLayer.getTileHeight()*4*(j+1)
+                        });
                     tiles.add(rect);
                 }
             }
         }
-
-        Rectangle intersection = new Rectangle();
-
-        for (Rectangle rect : tiles) {
-            if (Intersector.intersectRectangles(hitbox.rect, rect, intersection)) {
-                if (rect.y > hitbox.rect.y && hitbox.rect.y+hitbox.rect.height < rect.y+rect.height) {
-                    pos.y -= intersection.height;
-                    vel.dy = 0;
-                }
-                if (rect.y < hitbox.rect.y) {
-                    pos.y += intersection.height;
-                    vel.dy = 0;
-                }
-
-                if (rect.x > hitbox.rect.x && hitbox.rect.x+hitbox.rect.width < rect.x+rect.width) {
-                    pos.x -= intersection.width;
-                    vel.dx = 0;
-                }
-                if (rect.x < hitbox.rect.x) {
-                    pos.x += intersection.width;
-                    vel.dx = 0;
-                }
+        List<Polygon> hits = new ArrayList<Polygon>();
+        for (Polygon rect : tiles) {
+            if (Intersector.intersectLinePolygon(
+                                                new Vector2(pos.x,pos,y),
+                                                new Vector2(something, something),
+                                                rect
+                                                )) {
+                hits.add(rect);
             }
         }
+        Polygon best;
+        for(Polygon rect : hits){
 
-        pos.x += vel.dx * speedMult;
-        pos.y += vel.dy * speedMult;
+        }
+
     }
 }
