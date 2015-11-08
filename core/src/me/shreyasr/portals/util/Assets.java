@@ -8,8 +8,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public enum Assets {
 
-    PLAYER (Texture.class, "player.png");
-//    MAP    (TiledMap.class, "maps/map.tmx");
+    PLAYER (Texture.class, "chelle.png"),
+    MAP    (TiledMap.class, "maps/map1.tmx");
 
     private final Class type;
     private final String file;

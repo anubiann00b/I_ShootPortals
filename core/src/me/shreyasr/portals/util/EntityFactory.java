@@ -26,7 +26,7 @@ public class EntityFactory {
     private Entity createDumbPlayer(PooledEngine engine, float x, float y) {
         Entity e = engine.createEntity();
 
-        e.add(AnimationComponent.create(engine, 4, 64, 165, 166));
+        e.add(AnimationComponent.create(engine, 1, 97, 172, 166));
         e.add(HitboxComponent.create(engine));
         e.add(PositionComponent.create(engine, x, y));
         e.add(TextureComponent.create(engine, Assets.PLAYER.getFile()));

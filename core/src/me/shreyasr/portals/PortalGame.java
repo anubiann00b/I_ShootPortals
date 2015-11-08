@@ -12,6 +12,9 @@ import me.shreyasr.portals.util.Assets;
 
 public class PortalGame extends Game {
 
+    public static final float GRAVITY_CONSTANT = 0.1f;
+    public static final float JUMP_POWER = 5f;
+
     public static boolean DEBUG_MODE = true;
 
     public SpriteBatch batch;
