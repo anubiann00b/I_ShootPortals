@@ -48,7 +48,7 @@ public class GameScreen extends ScreenAdapter {
         engine = new PooledEngine();
         EntityFactory entityFactory = new EntityFactory();
 
-        engine.addEntity(entityFactory.createPlayer(engine, 100, 100));
+        engine.addEntity(entityFactory.createPlayer(engine, 200, 200));
 
         int priority = 0;
         // @formatter:off
